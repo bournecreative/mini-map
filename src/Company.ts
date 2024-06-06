@@ -8,6 +8,10 @@ export class Company implements Coords {
         mapLng: number
     }
     motto: string
+    summary: {
+        name: string,
+        detail: string
+    }
 
     constructor() {
         this.name = faker.company.name();
@@ -16,5 +20,9 @@ export class Company implements Coords {
             mapLng: faker.location.latitude()
         }
         this.motto = faker.company.catchPhrase()
+        this.summary = {
+            name: this.name,
+            detail: this.motto
+        }
     }
 }

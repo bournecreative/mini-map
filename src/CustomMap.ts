@@ -31,7 +31,7 @@ export class CustomMap {
         }); 
     }
 
-    async initMarker(markerCords: {mapLat: number, mapLng: number,}, locationInfo: string) {
+    async initMarker(markerCords: {mapLat: number, mapLng: number,}, info: {name: string, detail: string}) {
         const { AdvancedMarkerElement } = await google.maps.importLibrary("marker") as google.maps.MarkerLibrary;
         const marker = new AdvancedMarkerElement({
             map: this.googleMap,
@@ -39,7 +39,8 @@ export class CustomMap {
             title: 'Uluru'
         });
         const infowindow = new google.maps.InfoWindow({
-            content: locationInfo,
+            content: `Name: ${info.name} 
+            Detail: ${info.detail}`
         });
         marker.addListener("click", () => {
             infowindow.open({
