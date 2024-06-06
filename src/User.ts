@@ -7,6 +7,7 @@ export class User implements Coords {
         mapLat: number,
         mapLng: number 
     }
+    locationInfo: string
 
     constructor() {
         this.name = faker.person.firstName()        
@@ -14,6 +15,7 @@ export class User implements Coords {
             mapLat: faker.location.latitude(),
             mapLng: faker.location.latitude()
         }
+        this.locationInfo = faker.word.adjective(100)
     }
     
 }

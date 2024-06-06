@@ -31,13 +31,24 @@ export class CustomMap {
         }); 
     }
 
-    async initMarker(markerCords: {mapLat: number, mapLng: number}) {
+    async initMarker(markerCords: {mapLat: number, mapLng: number,}, locationInfo: string) {
         const { AdvancedMarkerElement } = await google.maps.importLibrary("marker") as google.maps.MarkerLibrary;
-        new AdvancedMarkerElement({
+        const marker = new AdvancedMarkerElement({
             map: this.googleMap,
             position:  {lat: markerCords.mapLat, lng: markerCords.mapLng},
             title: 'Uluru'
         });
+        const infowindow = new google.maps.InfoWindow({
+            content: locationInfo,
+        });
+        marker.addListener("click", () => {
+            infowindow.open({
+                anchor: marker,
+                map: this.googleMap,
+            });
+        });
+
+
     }
 
 }
