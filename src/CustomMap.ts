@@ -3,10 +3,12 @@ export class CustomMap {
     
     googleMap: google.maps.Map | undefined
     mapCords: { mapLat: number, mapLng: number }
+    markerCords: { mapLat: number, mapLng: number }
     
-    constructor(mapCords: { mapLat: number, mapLng: number }) {
+    constructor(mapCords: { mapLat: number, mapLng: number }, markerCords: { mapLat: number, mapLng: number }) {
        this.googleMap
        this.mapCords = mapCords
+       this.markerCords = markerCords
        /**
         * We can not longer create map objects in the contructor because Map and Marker must in imported. Before we could so something like
         * this.googleMap = new google.maps.Map(document.getElementById("map"), {center: {lat: 30, lng: -110},...etc}
@@ -28,7 +30,7 @@ export class CustomMap {
         const { AdvancedMarkerElement } = await google.maps.importLibrary("marker") as google.maps.MarkerLibrary;
         new AdvancedMarkerElement({
             map: this.googleMap,
-            position:  {lat: 30, lng: -110},
+            position:  {lat: this.markerCords.mapLat, lng: this.markerCords.mapLng},
             title: 'Uluru'
         });
     }
