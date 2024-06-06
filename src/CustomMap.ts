@@ -6,6 +6,10 @@ export interface Coords {
     }
 }
 
+export interface Mappable extends Coords {
+    markerContent: ()=> string
+}
+
 export class CustomMap {
     
     googleMap: google.maps.Map | undefined
@@ -31,15 +35,15 @@ export class CustomMap {
         }); 
     }
 
-    async initMarker(markerCords: {mapLat: number, mapLng: number,}, info: {name: string, detail: string}) {
+    async initMarker(obj:Mappable) {
         const { AdvancedMarkerElement } = await google.maps.importLibrary("marker") as google.maps.MarkerLibrary;
         const marker = new AdvancedMarkerElement({
             map: this.googleMap,
-            position:  {lat: markerCords.mapLat, lng: markerCords.mapLng},
+            position:  {lat: obj.location.mapLat, lng: obj.location.mapLng},
             title: 'Uluru'
         });
         const infowindow = new google.maps.InfoWindow({
-            content: `Name: ${info.name} <br/><br/> Detail: ${info.detail}`
+            content: obj.markerContent()
             
         });
         marker.addListener("click", () => {

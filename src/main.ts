@@ -9,8 +9,8 @@ const testUser = new User();
 const testCompany = new Company();
 const testMap = new CustomMap(mapArea);
 testMap.initMap('map')
-testMap.initMarker(testUser.location, testUser.summary)
-testMap.initMarker(testCompany.location, testCompany.summary)
+testMap.initMarker(testUser)
+testMap.initMarker(testCompany)
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>

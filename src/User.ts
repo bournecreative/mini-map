@@ -1,17 +1,12 @@
 import { faker } from "@faker-js/faker"
-import { Coords } from "./CustomMap";
+import { Mappable } from "./CustomMap";
 
-export class User implements Coords {
+export class User implements Mappable {
     name: string
     location: {
         mapLat: number,
         mapLng: number 
-    }
-    locationInfo: string
-    summary: {
-        name: string,
-        detail: string
-    }
+    }    
 
     constructor() {
         this.name = faker.person.firstName()        
@@ -19,11 +14,10 @@ export class User implements Coords {
             mapLat: faker.location.latitude(),
             mapLng: faker.location.latitude()
         }
-        this.locationInfo = faker.word.adjective(100)
-        this.summary = {
-            name: this.name,
-            detail: this.locationInfo
-        }
+    }
+
+    markerContent(): string {
+        return `Name: ${this.name} <br/> Job Title: ${faker.person.jobTitle()}`
     }
     
 }
