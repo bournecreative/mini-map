@@ -5,7 +5,7 @@ import "./css/styles.css"
 
 const testUser = new User();
 const testCompany = new Company();
-const testMap = new CustomMap();
+const testMap = new CustomMap({mapLat: 30, mapLng: -110});
 testMap.initMap()
 testMap.initMarker()
 
