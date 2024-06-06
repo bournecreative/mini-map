@@ -11,7 +11,7 @@ export class CustomMap {
     googleMap: google.maps.Map | undefined
     mapCords: Coords
     
-    constructor(mapCords: Coords) {
+    constructor(mapCords: Coords, ) {
        this.googleMap
        this.mapCords = mapCords
        /**
@@ -21,10 +21,10 @@ export class CustomMap {
        */
     }
 
-    async initMap() {
+    async initMap(mapID:string) {
         const { Map } = await google.maps.importLibrary("maps") as google.maps.MapsLibrary;
        
-        this.googleMap = new Map(document.getElementById("map") as HTMLElement, {
+        this.googleMap = new Map(document.getElementById(`${mapID}`) as HTMLElement, {
             center: {lat: this.mapCords.location.mapLat, lng: this.mapCords.location.mapLng},
             zoom: 2,
             mapId: 'map',
@@ -39,8 +39,8 @@ export class CustomMap {
             title: 'Uluru'
         });
         const infowindow = new google.maps.InfoWindow({
-            content: `Name: ${info.name} 
-            Detail: ${info.detail}`
+            content: `Name: ${info.name} <br/><br/> Detail: ${info.detail}`
+            
         });
         marker.addListener("click", () => {
             infowindow.open({
