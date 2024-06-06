@@ -1,11 +1,15 @@
 
+interface Coords {
+    mapLat: number,
+    mapLng: number 
+}
 export class CustomMap {
     
     googleMap: google.maps.Map | undefined
-    mapCords: { mapLat: number, mapLng: number }
-    markerCords: { mapLat: number, mapLng: number }
+    mapCords: Coords
+    markerCords: Coords
     
-    constructor(mapCords: { mapLat: number, mapLng: number }, markerCords: { mapLat: number, mapLng: number }) {
+    constructor(mapCords: Coords, markerCords: Coords) {
        this.googleMap
        this.mapCords = mapCords
        this.markerCords = markerCords
