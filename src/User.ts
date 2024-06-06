@@ -1,25 +1,18 @@
 import { faker } from "@faker-js/faker"
+import { Coords } from "./CustomMap";
 
-interface Record {
-    name: string,
+export class User implements Coords {
+    name: string
     location: {
-        lat: number,
-        lng: number
-    }
-}
-
-export class User {
-    name: string;
-    location: {
-        lat: number,
-        lng: number
+        mapLat: number,
+        mapLng: number 
     }
 
     constructor() {
-        this.name = faker.person.firstName()
+        this.name = faker.person.firstName()        
         this.location = {
-            lat: faker.location.latitude(),
-            lng: faker.location.latitude()
+            mapLat: faker.location.latitude(),
+            mapLng: faker.location.latitude()
         }
     }
     

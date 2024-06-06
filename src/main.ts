@@ -3,11 +3,14 @@ import { Company } from './Company'
 import { CustomMap } from './CustomMap';
 import "./css/styles.css"
 
+const mapArea = { location: {mapLat: 30, mapLng: -110}}
+
 const testUser = new User();
 const testCompany = new Company();
-const testMap = new CustomMap({mapLat: 30, mapLng: -110}, {mapLat: 30, mapLng: -110});
+const testMap = new CustomMap(mapArea);
 testMap.initMap()
-testMap.initMarker()
+testMap.initMarker(testUser.location)
+testMap.initMarker(testCompany.location)
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
